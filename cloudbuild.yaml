@@ -1,0 +1,24 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  pool:
+    name: 'projects/$PROJECT_ID/locations/europe-west4/workerPools/api-platform-pool'
+steps:
+  - id: "docker-build"
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "build", "-t", "europe-west4-docker.pkg.dev/$PROJECT_ID/api-platform/api:$SHORT_SHA", "-t", "europe-west4-docker.pkg.dev/$PROJECT_ID/api-platform/api:latest", "."]
+
+  - id: "docker-push-sha"
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "push", "europe-west4-docker.pkg.dev/$PROJECT_ID/api-platform/api:$SHORT_SHA" ]
+
+  - id: "migrate-db"
+    name: "europe-west4-docker.pkg.dev/$PROJECT_ID/api-platform/api:$SHORT_SHA"
+    dir: /app
+    env:
+      - "DATABASE_URL=postgresql://app:app@<REPLACE_ME>:5432/app?serverVersion=14&charset=utf8"
+    entrypoint: php
+    args: ["bin/console", "doctrine:migrations:migrate", "--no-interaction"]
+
+  - id: "docker-push-latest"
+    name: "gcr.io/cloud-builders/docker"
+    args: [ "push", "europe-west4-docker.pkg.dev/$PROJECT_ID/api-platform/api:latest" ]
