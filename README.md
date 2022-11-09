@@ -50,4 +50,4 @@ This template is meant to get a basic understanding on how API-Platform can be d
 3. Apply terraform in a whole
    - `terraform plan -var-file=example.tfvars`
    - `terraform apply -var-file=example.tfvars`
-5. Finished! Go to the url outputted by terraform
+5. Finished! Test by running `curl <cloud-run-url>/api/cars`
