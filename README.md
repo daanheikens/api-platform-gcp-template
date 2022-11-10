@@ -6,6 +6,16 @@ Template to deploy api-platform to GCP during the demo session
 This template is solely for demonstration purposes. Do not use this code in production as it's not secured for production workloads.
 This template is meant to get a basic understanding on how API-Platform can be deployed to Google Cloud Platform.
 
+## Prerequisites
+1. PHP 8.1 
+2. Composer 
+3. Symfony-CLI 
+4. Terraform 
+5. GCP Project 
+6. A Github repository created from this template
+7. Docker 
+8. gcloud CLI
+
 ## Preparation
 
 1. Open a command line terminal
