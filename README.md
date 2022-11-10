@@ -3,7 +3,7 @@ Template to deploy api-platform to GCP during the demo session
 
 ### Disclaimer
 
-This template is solely for demonstration purposes. Do not use this code in production as it could pose security risks.
+This template is solely for demonstration purposes. Do not use this code in production as it's not secured for production workloads.
 This template is meant to get a basic understanding on how API-Platform can be deployed to Google Cloud Platform.
 
 ## Preparation
