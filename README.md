@@ -24,8 +24,8 @@ This template is meant to get a basic understanding on how API-Platform can be d
    - Rename the `example.tfvars.tpl` file to `terraform.tfvars`
    - Replace the placeholders with your variables
 2. Apply network, ci-cd and database before creating the app. (this could take approximately 15 min)
-   - `terraform plan -var-file=example.tfvars -target=module.ci-cd -target=module.network -target=module.sql`
-   - `terraform apply -var-file=example.tfvars -target=module.ci-cd -target=module.network -target=module.sql`
+   - `terraform plan -var-file=terraform.tfvars -target=module.ci-cd -target=module.network -target=module.sql`
+   - `terraform apply -var-file=terraform.tfvars -target=module.ci-cd -target=module.network -target=module.sql`
 3. After it's done, Terraform will output the database ip. Replace the placeholder on line 18 in `cloudbuild.yaml` with this IP address.
 
 # Let's build the application
@@ -48,6 +48,6 @@ This template is meant to get a basic understanding on how API-Platform can be d
 1. Push code to trigger a build, (this is the initial image)
 2. Verify that a build has succeeded by checking the Cloud Build Dashboard
 3. Apply terraform in a whole
-   - `terraform plan -var-file=example.tfvars`
-   - `terraform apply -var-file=example.tfvars`
+   - `terraform plan -var-file=terraform.tfvars`
+   - `terraform apply -var-file=terraform.tfvars`
 5. Finished! Test by running `curl <cloud-run-url>/api/cars` (please note that there might be a delay on the first request as of the Cold Start of cloud run)
